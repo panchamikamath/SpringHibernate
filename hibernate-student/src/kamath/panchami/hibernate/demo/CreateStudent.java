@@ -1,5 +1,8 @@
 package kamath.panchami.hibernate.demo;
 
+import java.text.ParseException;
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,7 +27,8 @@ public class CreateStudent {
 			
 			System.out.println("Creating new student object...");
 			//create student object
-			Student tempStudent = new Student("Akshatha","Prabhu","akshatha.prabhu@gmail.com");
+			Date theDateOfBirth = DateUtils.parseDate("32/2/1987");
+			Student tempStudent = new Student("Ross","Geller","Geller.ross@friends.com",theDateOfBirth);
 			
 			//start a transaction
 			session.beginTransaction();
@@ -37,6 +41,8 @@ public class CreateStudent {
 			session.getTransaction().commit();
 			
 			System.out.println("Done!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		finally {
 			factory.close();
